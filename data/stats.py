@@ -3,8 +3,23 @@
 
 """Simple "from scratch" statistical package inspired by Joel Grus."""
 
+import math
+
 def average(data):
     return sum(data) / float(len(data))
+
+# Define synonyms for the average function.
+avg = average
+mean = average
+
+def median(data):
+    s = sorted(data)
+    if len(data) % 2 == 0:
+        i = (len(data) / 2) - 1
+        return (s[i] + s[i+1]) / 2.0
+    else:
+        return s[int(math.floor(len(data) / 2))]
+
 
 if __name__ == '__main__':
 
@@ -13,7 +28,10 @@ if __name__ == '__main__':
 
     commands = {
         'avg': average,
-        'average': average}
+        'average': average,
+        'mean': average,
+        'median': median
+    }
 
 
     parser = argparse.ArgumentParser(description='Run statistical calculations.')
